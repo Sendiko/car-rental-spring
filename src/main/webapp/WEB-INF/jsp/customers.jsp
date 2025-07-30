@@ -27,37 +27,21 @@ pageEncoding="UTF-8"%>
         <p class="align-self-center">Sebuah website penyewaan mobil yang berlokasi di Purwokerto.</p>
     </div>
 
-    <div class="d-flex flex-row gap-2">
-        <a href="/transactions" class="btn btn-outline-light align-self-end mb-2">Lihat Transaksi</a>
-        <a href="/customers" class="btn btn-outline-secondary align-self-end mb-2">Lihat Pelanggan</a>
-        <a href="/form" class="btn btn-primary align-self-end mb-2"> + Tambah Mobil </a>
-    </div>
-
     <div class="table-responsive">
         <table class="table table-dark table-bordered border-light align-middle w-100">
             <thead>
                 <tr>
-                    <th>Nama Mobil</th>
-                    <th>Plat Nomer</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Tahun Keluaran</th>
-                    <th>Harga Sewa</th>
-                    <th>Available</th>
-                    <th>Jumlah Kursi</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Nomor Induk Kependudukan</th>
+                    <th>Nomor Handphone</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${cars}" var="car">
+                <c:forEach items="${customers}" var="customer">
                     <tr>
-                        <td>${car.namaMobil}</td>
-                        <td>${$car.platNomor}</td>
-                        <td>${car.brand}</td>
-                        <td>${car.model}</td>
-                        <td>${car.tahunKeluaran}</td>
-                        <td>${car.hargaSewa}</td>
-                        <td>${car.available}</td>
-                        <td>${car.jumlahKursi}</td>
+                        <td>${customer.name}</td>
+                        <td>${customer.nik}</td>
+                        <td>${customer.phoneNumber}</td>
                     </tr>
                 </c:forEach>
                 <tr>

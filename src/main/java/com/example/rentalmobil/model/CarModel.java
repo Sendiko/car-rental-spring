@@ -14,7 +14,7 @@ public class CarModel {
     private int jumlahKursi;
 
     /**
-     * Constructor 
+     * Constructor
      *
      * @param namaMobil     The name of the car.
      * @param platNomor     The license plate number.
@@ -25,7 +25,8 @@ public class CarModel {
      * @param available     The availability status of the car.
      * @param jumlahKursi   The number of seats in the car.
      */
-    public CarModel(String namaMobil, String platNomor, String brand, String model, int tahunKeluaran, double hargaSewa, boolean available, int jumlahKursi) {
+    public CarModel(String namaMobil, String platNomor, String brand, String model, int tahunKeluaran, double hargaSewa,
+            boolean available, int jumlahKursi) {
         this.namaMobil = namaMobil;
         this.platNomor = platNomor;
         this.brand = brand;
@@ -101,7 +102,8 @@ public class CarModel {
     }
 
     /**
-     * Returns a more readable, multi-line string representation of the Mobil object.
+     * Returns a more readable, multi-line string representation of the Mobil
+     * object.
      *
      * @return A formatted string containing the car's details.
      */
@@ -129,8 +131,7 @@ public class CarModel {
                 2021,
                 350000.0,
                 true,
-                7
-        ));
+                7));
         carList.add(new CarModel(
                 "Avanza Hitam",
                 "B 1234 XYZ",
@@ -139,8 +140,7 @@ public class CarModel {
                 2021,
                 350000.0,
                 true,
-                7
-        ));
+                7));
 
         carList.add(new CarModel(
                 "Mobilio Silver",
@@ -150,8 +150,7 @@ public class CarModel {
                 2020,
                 320000.0,
                 false,
-                7
-        ));
+                7));
 
         carList.add(new CarModel(
                 "Innova Reborn",
@@ -161,8 +160,7 @@ public class CarModel {
                 2022,
                 500000.0,
                 true,
-                8
-        ));
+                8));
 
         carList.add(new CarModel(
                 "Xenia Putih",
@@ -172,8 +170,7 @@ public class CarModel {
                 2019,
                 300000.0,
                 true,
-                7
-        ));
+                7));
 
         carList.add(new CarModel(
                 "Rush Adventure",
@@ -183,8 +180,7 @@ public class CarModel {
                 2023,
                 450000.0,
                 false,
-                5
-        ));
+                5));
 
         // Return the populated list
         return carList;
