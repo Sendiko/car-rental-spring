@@ -24,21 +24,36 @@
         <p class="align-self-center">Sebuah website penyewaan mobil yang berlokasi di Purwokerto.</p>
     </div>
 
+    <div class="d-flex justify-content-between mb-3">
+        <a href="/" class="btn btn-outline-secondary">Kembali ke Mobil</a>
+        <a href="/customers/add" class="btn btn-primary">+ Tambah Pelanggan</a>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-dark table-bordered border-light align-middle w-100">
             <thead>
-                <tr>
-                    <th>Nama Pelanggan</th>
-                    <th>Nomor Induk Kependudukan</th>
-                    <th>Nomor Handphone</th>
-                </tr>
+            <tr>
+                <th>ID</th>
+                <th>Nama Pelanggan</th>
+                <th>NIK</th>
+                <th>Nomor Handphone</th>
+                <th>Actions</th> </tr>
             </thead>
             <tbody>
-                <tr th:each="customer : ${customers}">
-                    <td th:text="${customer.getName()}"></td>
-                    <td th:text="${customer.getNik()}"></td>
-                    <td th:text="${customer.getPhoneNumber()}"></td>
-                </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.idCustomer}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.nik}"></td>
+                <td th:text="${customer.phoneNumber}"></td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a th:href="@{/customers/update/{id}(id=${customer.idCustomer})}" class="btn btn-warning btn-sm">Update</a>
+                        <form th:action="@{/customers/delete/{id}(id=${customer.idCustomer})}" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
