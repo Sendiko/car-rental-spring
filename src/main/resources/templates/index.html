@@ -4,63 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Dasar HTML</title>
+    <title>Rental Mobil Java</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+            rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 
 <body class="container bg-dark text-white d-flex flex-column">
-    <div class="d-flex flex-column m-5">
-        <div class="d-flex flex-row justify-content-center">
-            <h1 class="headline">JAVA CAR RENTAL</h1> <!-- Contoh dari non self closing Tag -->
-            <h5 class="subheadline">BY SENDIKO</h5> <!-- Contoh dari non self closing Tag -->
-        </div>
-        <p class="align-self-center">Sebuah website penyewaan mobil yang berlokasi di Purwokerto.</p>
+<div class="d-flex flex-column m-5">
+    <div class="d-flex flex-row justify-content-center">
+        <h1 class="headline">JAVA CAR RENTAL</h1> <!-- Contoh dari non self closing Tag -->
+        <h5 class="subheadline">BY SENDIKO</h5> <!-- Contoh dari non self closing Tag -->
     </div>
+    <p class="align-self-center">Sebuah website penyewaan mobil yang berlokasi di Purwokerto.</p>
+</div>
 
-    <div class="d-flex flex-row gap-2">
-        <a href="/transactions" class="btn btn-outline-light align-self-end mb-2">Lihat Transaksi</a>
-        <a href="/customers" class="btn btn-outline-secondary align-self-end mb-2">Lihat Pelanggan</a>
-        <a href="/form" class="btn btn-primary align-self-end mb-2"> + Tambah Mobil </a>
-    </div>
+<div class="d-flex flex-row gap-2">
+    <a href="/transactions" class="btn btn-outline-light align-self-end mb-2">Lihat Transaksi</a>
+    <a href="/customers" class="btn btn-outline-secondary align-self-end mb-2">Lihat Pelanggan</a>
+    <a href="/form" class="btn btn-primary align-self-end mb-2"> + Tambah Mobil </a>
+</div>
 
-    <div class="table-responsive">
-        <table class="table table-dark table-bordered border-light align-middle w-100">
-            <thead>
-                <tr>
-                    <th>ID Mobil</th>
-                    <th>Nama Mobil</th>
-                    <th>Plat Nomer</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Tahun Keluaran</th>
-                    <th>Harga Sewa</th>
-                    <th>Available</th>
-                    <th>Jumlah Kursi</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr th:each="car : ${cars}">
-                <td th:text="${car.idMobil}">1</td>
-                <td th:text="${car.namaMobil}">Avanza</td>
-                <td th:text="${car.platNomor}">B 1234 ABC</td>
-                <td th:text="${car.brand}">Toyota</td>
-                <td th:text="${car.model}">G</td>
-                <td th:text="${car.tahunKeluaran}">2022</td>
-                <td th:text="${car.hargaSewa}">300000</td>
-                <td th:text="${car.available} ? 'Yes' : 'No'">Yes</td>
-                <td th:text="${car.jumlahKursi}">7</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+<div class="table-responsive">
+    <table class="table table-dark table-bordered border-light align-middle w-100">
+        <thead>
+        <tr>
+            <th>ID Mobil</th>
+            <th>Nama Mobil</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.idMobil}">1</td>
+            <td th:text="${car.namaMobil}">Avanza</td>
+            <td th:text="${car.brand}">Toyota</td>
+            <td th:text="${car.model}">G</td>
+            <td th:text="${car.available} ? 'Yes' : 'No'">Yes</td>
+            <td>
+                <div class="d-flex gap-2">
+                    <a th:href="@{/update/{id}(id=${car.idMobil})}" class="btn btn-warning btn-sm">Update</a>
+
+                    <form th:action="@{/delete/{id}(id=${car.idMobil})}" method="post">
+                        <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure you want to delete this car?');">Delete
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </body>
