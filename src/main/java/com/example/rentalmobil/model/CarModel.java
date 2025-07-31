@@ -1,16 +1,43 @@
 package com.example.rentalmobil.model;
 
-import java.util.ArrayList;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
+@Entity
+@Table(name = "car")
 public class CarModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_mobil")
+    private int idMobil;
+
+    @Column(name = "nama_mobil")
     private String namaMobil;
+
+    @Column(name = "plat_nomor")
     private String platNomor;
+
+    @Column(name = "brand")
     private String brand;
+
+    @Column(name = "model")
     private String model;
+
+    @Column(name = "tahun_keluaran")
     private int tahunKeluaran;
+
+    @Column(name = "harga_sewa")
     private double hargaSewa;
+
+    @Column(name = "available")
     private boolean available;
+
+    @Column(name = "jumlah_kursi")
     private int jumlahKursi;
 
     /**
@@ -25,8 +52,9 @@ public class CarModel {
      * @param available     The availability status of the car.
      * @param jumlahKursi   The number of seats in the car.
      */
-    public CarModel(String namaMobil, String platNomor, String brand, String model, int tahunKeluaran, double hargaSewa,
+    public CarModel(int idMobil, String namaMobil, String platNomor, String brand, String model, int tahunKeluaran, double hargaSewa,
             boolean available, int jumlahKursi) {
+        this.idMobil = idMobil;
         this.namaMobil = namaMobil;
         this.platNomor = platNomor;
         this.brand = brand;
@@ -35,6 +63,17 @@ public class CarModel {
         this.hargaSewa = hargaSewa;
         this.available = available;
         this.jumlahKursi = jumlahKursi;
+    }
+
+    public CarModel() {
+    }
+
+    public int getIdMobil() {
+        return idMobil;
+    }
+
+    public void setIdMobil(int idMobil) {
+        this.idMobil = idMobil;
     }
 
     public String getNamaMobil() {
@@ -118,71 +157,5 @@ public class CarModel {
                 "\tHarga Sewa:     " + hargaSewa + '\n' +
                 "\tAvailable:      " + available + '\n' +
                 "\tJumlah Kursi:   " + jumlahKursi;
-    }
-
-    public static ArrayList<CarModel> getCarList() {
-        ArrayList<CarModel> carList = new ArrayList<>();
-
-        carList.add(new CarModel(
-                "Avanza Hitam",
-                "B 1234 XYZ",
-                "Toyota",
-                "Avanza",
-                2021,
-                350000.0,
-                true,
-                7));
-        carList.add(new CarModel(
-                "Avanza Hitam",
-                "B 1234 XYZ",
-                "Toyota",
-                "Avanza",
-                2021,
-                350000.0,
-                true,
-                7));
-
-        carList.add(new CarModel(
-                "Mobilio Silver",
-                "D 5678 ABC",
-                "Honda",
-                "Mobilio",
-                2020,
-                320000.0,
-                false,
-                7));
-
-        carList.add(new CarModel(
-                "Innova Reborn",
-                "E 9101 DEF",
-                "Toyota",
-                "Innova",
-                2022,
-                500000.0,
-                true,
-                8));
-
-        carList.add(new CarModel(
-                "Xenia Putih",
-                "F 1122 GHI",
-                "Daihatsu",
-                "Xenia",
-                2019,
-                300000.0,
-                true,
-                7));
-
-        carList.add(new CarModel(
-                "Rush Adventure",
-                "G 3344 JKL",
-                "Toyota",
-                "Rush",
-                2023,
-                450000.0,
-                false,
-                5));
-
-        // Return the populated list
-        return carList;
     }
 }

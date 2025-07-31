@@ -1,37 +1,49 @@
 package com.example.rentalmobil.controller;
 
-import java.util.ArrayList;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.rentalmobil.model.CarModel;
+import com.example.rentalmobil.repositories.CarRepository;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class CarController {
-    
-    /* www.rentaljava.com */ 
-    /* https://www.rentaljava.com/ */ 
+    private static final Logger logger = LoggerFactory.getLogger(CarController.class);
+    private final CarRepository repository;
+
+    public CarController(CarRepository repository) {
+        this.repository = repository;
+    }
+
+    /* www.rentaljava.com */
+    /* https://www.rentaljava.com/ */
     @RequestMapping("/")
     public String display(Model model) {
-        ArrayList<CarModel> cars = CarModel.getCarList();
-        model.addAttribute("cars", cars);
+        model.addAttribute("cars", repository.getCars());
         return "index";
     }
 
-    /* www.rentaljava.com */ 
-    /* https://www.rentaljava.com/greeting */
-    @RequestMapping("/greeting")
-    public String greeting(Model model) {
-        /* Membuat sebuah variable bernama greeting dengan value "Halo, Sendiko" */
-        model.addAttribute("greeting", "Halo, Indah");
-        return "greeting"; /* Menampilkan file greeting.jsp */
+    @GetMapping("/form")
+    public String showCarForm(Model model) {
+        model.addAttribute("carModel", new CarModel());
+        return "form";
     }
 
-    @RequestMapping("/form")
-    public String showCarForm() {
-        return "form";
+    @PostMapping("/form")
+    public String addCar(@ModelAttribute CarModel carModel) {
+        carModel.setAvailable(true);
+        logger.info("Received carModel from form: {}", carModel);
+        repository.addCar(carModel);
+
+        return "redirect:/";
     }
 
 }
