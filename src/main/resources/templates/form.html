@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,39 +18,46 @@ pageEncoding="UTF-8"%>
         <p class="align-self-center">Sebuah website penyewaan mobil yang berlokasi di Purwokerto.</p>
     </div>
 
-    <a href="/view/index.html" class="btn btn-outline-light w-25 mx-5 mb-3">Kembali</a>
-    <form class="form mx-5 p-3 gap-3 border border-light rounded-3 d-flex flex-column">
+    <a href="/" class="btn btn-outline-light w-25 mx-5 mb-3">Kembali</a>
+    <form action="#" th:action="@{/form}" th:object="${carModel}" method="post" class="form mx-5 p-3 gap-3 border border-light rounded-3 d-flex flex-column">
         <div>
-            <label for="nama_mobil" class="form-label">Nama Mobil</label>
-            <input name="nama_mobil" type="text" class="form-control bg-dark text-light" />
+            <label for="namaMobil" class="form-label">Nama Mobil</label>
+            <!-- Use th:field to match the 'namaMobil' field in your model -->
+            <input id="namaMobil" type="text" th:field="*{namaMobil}" class="form-control bg-dark text-light" />
         </div>
         <div>
-            <label for="plat_nomer" class="form-label">Plat Nomer</label>
-            <input name="plat_nomer" type="text" class="form-control bg-dark text-light" />
+            <label for="platNomor" class="form-label">Plat Nomor</label>
+            <!-- Matches the 'platNomor' field -->
+            <input id="platNomor" type="text" th:field="*{platNomor}" class="form-control bg-dark text-light" />
         </div>
         <div>
             <label for="brand" class="form-label">Brand</label>
-            <input name="brand" type="text" class="form-control bg-dark text-light" />
+            <!-- Matches the 'brand' field -->
+            <input id="brand" type="text" th:field="*{brand}" class="form-control bg-dark text-light" />
         </div>
         <div>
             <label for="model" class="form-label">Model</label>
-            <input name="model" type="text" class="form-control bg-dark text-light" />
+            <!-- Matches the 'model' field -->
+            <input id="model" type="text" th:field="*{model}" class="form-control bg-dark text-light" />
         </div>
         <div>
-            <label for="tahun_keluaran" class="form-label">Tahun Keluaran</label>
-            <input name="tahun_keluaran" type="number" class="form-control bg-dark text-light" />
+            <label for="tahunKeluaran" class="form-label">Tahun Keluaran</label>
+            <!-- Matches the 'tahunKeluaran' field -->
+            <input id="tahunKeluaran" type="number" th:field="*{tahunKeluaran}" class="form-control bg-dark text-light" />
         </div>
         <div>
-            <label for="harga_sewa" class="form-label">Harga Sewa</label>
+            <label for="hargaSewa" class="form-label">Harga Sewa</label>
             <div class="input-group">
                 <span class="input-group-text bg-dark text-light">Rp. </span>
-                <input name="harga_sewa" type="number" class="form-control bg-dark text-light" />
+                <!-- Matches the 'hargaSewa' field -->
+                <input id="hargaSewa" type="number" th:field="*{hargaSewa}" class="form-control bg-dark text-light" />
                 <span class="input-group-text bg-dark text-light">/Hari</span>
             </div>
         </div>
         <div>
-            <label for="jumlah_kursi" class="form-label">Jumlah Kursi</label>
-            <input name="jumlah_kursi" type="number" class="form-control bg-dark text-light" />
+            <label for="jumlahKursi" class="form-label">Jumlah Kursi</label>
+            <!-- Matches the 'jumlahKursi' field -->
+            <input id="jumlahKursi" type="number" th:field="*{jumlahKursi}" class="form-control bg-dark text-light" />
         </div>
         <button type="submit" class="btn btn-primary m-3 align-self-center w-75">Simpan Mobil</button>
     </form>
