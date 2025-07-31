@@ -14,8 +14,6 @@ public class TransactionController {
 
     @RequestMapping("/transactions")
     public String getTransactions(Model model) {
-        List<TransactionModel> transactions = TransactionModel.getTransactions();
-        model.addAttribute("transactions", transactions);
         return "transactions";
     }
     
