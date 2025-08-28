@@ -4,7 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.rentalmobil.model.CarModel;
 import com.example.rentalmobil.repositories.CarRepository;
@@ -21,18 +24,22 @@ public class CarController {
 
     /* www.rentaljava.com */
     /* https://www.rentaljava.com/ */
-    @RequestMapping("/")
+    @GetMapping("/")
     public String display(Model model) {
         model.addAttribute("cars", repository.getCars());
         return "index";
     }
 
+    /* www.rentaljava.com */
+    /* https://www.rentaljava.com/form */
     @GetMapping("/form")
     public String showAddForm(Model model) {
         model.addAttribute("carModel", new CarModel());
         return "form";
     }
 
+    /* www.rentaljava.com */
+    /* https://www.rentaljava.com/update/1 */
     @GetMapping("/update/{id}")
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
         CarModel car = repository.findCarById(id);
@@ -40,6 +47,8 @@ public class CarController {
         return "form"; // We re-use the same form.html
     }
 
+    /* www.rentaljava.com */
+    /* https://www.rentaljava.com/form */
     @PostMapping("/form")
     public String saveOrUpdateCar(@ModelAttribute CarModel carModel) {
         if (carModel.getIdMobil() == 0) {
@@ -54,6 +63,8 @@ public class CarController {
         return "redirect:/";
     }
 
+    /* www.rentaljava.com */
+    /* https://www.rentaljava.com/delete/1 */
     @PostMapping("/delete/{id}")
     public String deleteCar(@PathVariable("id") int id) {
         logger.info("Deleting car with ID {}", id);
