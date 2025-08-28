@@ -1,8 +1,5 @@
 package com.example.rentalmobil.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TransactionModel {
 
     private CustomerModel customer;
